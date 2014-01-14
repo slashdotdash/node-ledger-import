@@ -14,7 +14,7 @@ describe('Import', function() {
       account: 'Liabilities:Credit Card',
       date: {
         column: 1,
-        format: '%d %b %y'
+        format: 'DD MMM YY'
       },
       payee: {
         column: 2
@@ -46,6 +46,7 @@ describe('Import', function() {
   });
 
   it('should parse a single transaction', function() {
+    console.log(transactions[0]);
     expect(transactions.length).toBe(1);
   });
 });
