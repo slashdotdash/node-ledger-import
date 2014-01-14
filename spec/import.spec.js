@@ -46,7 +46,6 @@ describe('Import', function() {
   });
 
   it('should parse a single transaction', function() {
-    console.log(transactions[0]);
     expect(transactions.length).toBe(1);
   });
 });
