@@ -1,0 +1,39 @@
+{
+  "name": "ledger-import",
+  "homepage": "https://github.com/slashdotdash/node-ledger-import",
+  "version": "0.0.1",
+  "description": "Import accounting transactions from CSV files to Ledger format.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/slashdotdash/node-ledger-import.git"
+  },
+  "keywords": [
+    "ledger",
+    "accounting",
+    "finance"
+  ],
+  "author": {
+    "name": "Ben Smith",
+    "email": "ben@10consulting.com"
+  },
+  "license": "MIT",
+  "main": "lib/import.js",
+  "scripts": {},
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jasmine-node": "~0.1.1",
+    "jasmine-node": "~1.4.0"
+  },
+  "dependencies": {
+    "csv": "~0.2.9",
+    "lodash": "~1.0.1",
+    "moment": "~2.3.1",
+    "node-pipeline": "~1.0.0"
+  },
+  "readmeFilename": "README.md"
+}
