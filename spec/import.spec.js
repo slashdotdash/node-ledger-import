@@ -16,7 +16,7 @@ describe('Import', function() {
         column: 1,
         format: '%d %b %y'
       },
-      description: {
+      payee: {
         column: 2
       },
       amount: {
