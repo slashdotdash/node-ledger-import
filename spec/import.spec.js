@@ -7,6 +7,7 @@ describe('Import', function() {
   beforeEach(function(done) {
     spec = this;
     importer = new Import({
+      ledger: 'spec/data/example.dat',
       log: true,
       header: false,
       separator: ',',
@@ -38,6 +39,7 @@ describe('Import', function() {
       done();
     })
     .once('error', function(error) {
+      console.error(error);
       spec.fail(error);
       done();
     });
