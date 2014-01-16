@@ -39,7 +39,6 @@ describe('Import', function() {
       done();
     })
     .once('error', function(error) {
-      console.error(error);
       spec.fail(error);
       done();
     });

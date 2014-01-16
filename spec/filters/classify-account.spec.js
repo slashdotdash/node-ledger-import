@@ -1,7 +1,7 @@
 var classifyAccount = require('../../lib/filters/classify-account');
 
 describe('classify account', function() {
-  var spec, output;
+  var spec, output, transactions;
 
   beforeEach(function() {
     spec = this;
@@ -10,20 +10,64 @@ describe('classify account', function() {
       var filter = classifyAccount(options);
 
       filter(input, function(err, result) {
-        if (err) {
-          console.error(err);
-          return spec.fail(err);
-        }
+        if (err) { spec.fail(err); done(); }
 
         output = result;
         done();
       });
     };
+
+    transactions = [
+      {
+        date: new Date(),
+        payee: 'Salary',
+        postings: [
+          {
+            account: 'Assets:Current Account',
+            commodity: {
+              currency: '£',
+              amount: 1000,
+              formatted: '£1,000.00'
+            }
+          },
+          {
+            account: 'Income:Salary',
+            commodity: {
+              currency: '£',
+              amount: -1000,
+              formatted: '£-1,000.00'
+            }
+          }
+        ]
+      },
+      {
+        date: new Date(),
+        payee: 'Mortgage payment',
+        postings: [
+          {
+            account: 'Expenses:Mortgage',
+            commodity: {
+              currency: '£',
+              amount: 500,
+              formatted: '£500.00'
+            }
+          },
+          {
+            account: 'Assets:Current Account',
+            commodity: {
+              currency: '£',
+              amount: -500,
+              formatted: '£-500.00'
+            }
+          }
+        ]
+      }
+    ];
   });
 
   describe('account exists', function() {
     beforeEach(function(done) {
-      this.createFilter({ ledger: 'spec/data/example.dat', account: 'Assets:Current Account' }, { payee: 'Salary' }, done);
+      this.createFilter({ account: 'Assets:Current Account' }, { transactions: transactions, payee: 'Salary' }, done);
     });
 
     it('should classify to correct account', function() {
@@ -31,13 +75,17 @@ describe('classify account', function() {
     });
   });
 
-  xdescribe('unknown payee', function() {
+  describe('unknown payee', function() {
     beforeEach(function(done) {
-      this.createFilter({ ledger: 'spec/data/example.dat', account: 'Assets:Current Account' }, { payee: 'Foo' }, done);
+      this.createFilter({ account: 'Assets:Current Account', threshold: 0.5 }, { transactions: transactions, payee: 'Foo' }, done);
     });
 
     it('should not classify the account', function() {
-      expect(output.account).toEqual('');
+      expect(output.account).toEqual(null);
+    });
+
+    it('should provide error message', function() {
+      expect(output.error).toEqual('Failed to classify payee "Foo"');
     });
   });
 });

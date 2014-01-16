@@ -10,7 +10,7 @@ describe('extract amount', function() {
       var filter = extractAmount(options);
 
       filter({ data: data }, function(err, result) {
-        if (err) { console.log(err); return spec.fail(err); }
+        if (err) { spec.fail(err); done(); }
 
         output = result;
         done();
