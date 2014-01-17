@@ -57,7 +57,7 @@ var csv = csv().from.path(file, { delimiter: delimiter, escape: escape });
 
 new Import(options)
   .on('transaction', function(transaction) {
-    // console.log(_.omit(transaction, 'transactions'));
+    console.log(_.omit(transaction, 'transactions'));
   })
   .once('error', function(err) {
     console.error(err);
