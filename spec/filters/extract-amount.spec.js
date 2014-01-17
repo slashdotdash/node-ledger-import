@@ -40,10 +40,10 @@ describe('extract amount', function() {
     });
   });
 
-  describe('multi-column amounts', function() {
+  describe('multiple amount columns', function() {
     describe('valid amount', function() {
       beforeEach(function(done) {
-        this.createFilter({ from: { column: 1 }, to: { column: 2 } }, [ '1.99', '' ], done);
+        this.createFilter({ columns: [ 1, 2 ] }, [ '1.99', '' ], done);
       });
 
       it('should parse', function() {

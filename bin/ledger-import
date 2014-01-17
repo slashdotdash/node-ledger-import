@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+var _ = require('lodash'),
+    program = require('commander'),
+    csv = require('csv'),
+    Import = require('../lib/import').Import;
+
+program
+  .version('0.0.1')
+  .usage('[options]')
+  .option('-f, --file <file>', 'The CSV file to parse')
+  .option('-a, --account <name>', 'The Ledger Account this file is for')
+  .option('-i, --inverse', 'Use the negative of each amount')
+  .option('-v, --verbose', 'Run verbosely', false)
+  .option('-l, --ledger <file>', 'An existing ledger file to learn accounts from')
+  .option('-c, --currency <symbol>', 'Currency symbol to use, defaults to £ ($, EUR)', '£')
+  .option('--contains-header', 'The first row of the CSV is a header and should be skipped')
+  .option('--csv-separator <separator>', 'Separator for parsing the CSV, default is comma.', ',')
+  .option('--date-column <number>', 'Column containing the date in the CSV file, the first column is column 1', parseInt)
+  .option('--date-format <string>', 'Force the date format')
+  .option('--payee-column <number>', 'Column containing the payee (description) in the CSV file', parseInt)
+  .option('--amount-column <number>', 'Column containing the amount in the CSV file', parseInt)
+  .option('--amount-from-column <number>', 'Column containing the amount to the specified account in the CSV file', parseInt)
+  .option('--amount-to-column <number>', 'Column containing the amount from specified account in the CSV file', parseInt)
+  .parse(process.argv);
+
+var file = program.file,
+    delimiter = program.csvSeparator,
+    escape = '"';
+
+var options = {
+  ledger: program.ledger,
+  log: program.verbose,
+  header: program.containsHeader,
+  currency: program.currency,
+  account: program.account,
+  date: {
+    column: program.dateColumn,
+    format: program.dateFormat
+  },
+  payee: {
+    column: program.payeeColumn
+  }
+};
+
+if (program.amountColumn) {
+  options.amount = {
+    column: program.amountColumn
+  };
+}
+
+if (!file) {
+  program.help();
+}
+
+var csv = csv().from.path(file, { delimiter: delimiter, escape: escape });
+
+new Import(options)
+  .on('transaction', function(transaction) {
+    // console.log(_.omit(transaction, 'transactions'));
+  })
+  .once('error', function(err) {
+    console.error(err);
+  })
+  .once('end', function() {
+    console.log('completed!');
+  })
+  .run(csv);

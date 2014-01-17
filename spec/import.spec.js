@@ -21,13 +21,8 @@ describe('Import', function() {
         column: 2
       },
       amount: {
-        from: {
-          column: 6
-        },
-        to: {
-          column: 5,
-          inverse: true
-        }
+        columns: [ 5, 6 ],
+        inverse: true
       }
     });
     transactions = [];

@@ -39,7 +39,9 @@ module.exports = function(grunt) {
             require: true,
             console: true,
             describe: true,
+            xdescribe: true,
             it: true,
+            xit: true,
             expect: true,
             beforeEach: true
           }
@@ -76,4 +78,6 @@ module.exports = function(grunt) {
   
   // Default task.
   grunt.registerTask('default', ['jshint', 'jasmine-node']);
+  
+  grunt.registerTask('spec', ['jasmine-node']);
 };

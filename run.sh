@@ -1,0 +1,12 @@
+./bin/ledger-import \
+	--file /Users/ben/Documents/Finance/Accounting/CurrentAccount-20140112.csv \
+	--account 'Assets:Current Account' \
+	--ledger /Users/ben/Documents/Finance/Accounting/2013.dat \
+	--currency '£' \
+	--contains-header \
+	--csv-separator ',' \
+	--date-column 1 \
+	--date-format 'DD/MM/YYYY' \
+	--payee-column 3 \
+	--amount-column 4 \
+	--inverse
