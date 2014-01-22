@@ -57,12 +57,18 @@ var csv = csv().from.path(file, { delimiter: delimiter, escape: escape });
 
 new Import(options)
   .on('transaction', function(transaction) {
-    console.log(_.omit(transaction, 'transactions'));
+    console.log(_.omit(transaction, 'transactions', 'data'));
+  })
+  .on('skipped', function() {
+    process.stdout.write('.');
+    // console.log('.');
   })
   .once('error', function(err) {
     console.error(err);
+    process.exit(1);
   })
   .once('end', function() {
     console.log('completed!');
+    process.exit(0);
   })
   .run(csv);
