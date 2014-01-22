@@ -11,7 +11,10 @@ describe('extract payee', function() {
   describe('valid payee', function() {
     beforeEach(function(done) {
       filter({ data: [ 'Mortgage' ] }, function(err, result) {
-        if (err) { spec.fail(err); done(); }
+        if (err) {
+          spec.fail(err);
+          return done();
+        }
 
         output = result;
         done();

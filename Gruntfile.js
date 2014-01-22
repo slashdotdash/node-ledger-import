@@ -21,6 +21,7 @@ module.exports = function(grunt) {
           module: true,
           exports: true,
           require: true,
+          process: true,
           console: true
         }
       },

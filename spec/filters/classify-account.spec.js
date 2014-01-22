@@ -10,7 +10,10 @@ describe('classify account', function() {
       var filter = classifyAccount(options);
 
       filter(input, function(err, result) {
-        if (err) { spec.fail(err); done(); }
+        if (err) {
+          spec.fail(err);
+          return done();
+        }
 
         output = result;
         done();

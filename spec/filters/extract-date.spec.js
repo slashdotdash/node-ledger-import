@@ -11,7 +11,10 @@ describe('extract date', function() {
   describe('valid date', function() {
     beforeEach(function(done) {
       filter({ data: [ '14 Dec 13' ] }, function(err, result) {
-        if (err) { spec.fail(err); done(); }
+        if (err) {
+          spec.fail(err);
+          return done();
+        }
 
         output = result;
         done();

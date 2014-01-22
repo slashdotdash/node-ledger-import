@@ -1,7 +1,7 @@
 var csv = require('csv'),
     Import = require('../lib/import').Import;
 
-describe('Import', function() {
+xdescribe('Import', function() {
   var spec, importer, transactions;
 
   beforeEach(function(done) {

@@ -8,5 +8,4 @@
 	--date-column 1 \
 	--date-format 'DD/MM/YYYY' \
 	--payee-column 3 \
-	--amount-column 4 \
-	--inverse
+	--amount-column 4
