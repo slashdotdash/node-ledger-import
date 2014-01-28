@@ -18,6 +18,9 @@
   },
   "license": "MIT",
   "main": "lib/import.js",
+  "bin" : { 
+    "ledger-import" : "bin/ledger-import" 
+  },
   "scripts": {},
   "directories": {
     "lib": "lib"

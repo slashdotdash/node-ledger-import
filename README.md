@@ -23,39 +23,6 @@ Install `ledger-import` and its dependencies with npm.
 
     npm install ledger-import
 
-### Example config
+Then run the import tool, providing the relevant command line arguments for the CSV you are attempting to parse.
 
-var config = {
-  header: false,
-  separator: ',',
-  currency: '£',
-  account: 'Liabilities:Credit Card',
-  date: {
-    column: 1,
-    format: '%d %b %y'
-  },
-  payee: {
-    column: 2
-  },
-  amount: {
-    from: {
-      column: 6
-    },
-    to: {
-      column: 5,
-      inverse: true
-    }
-  }
-};
-
-### Input/Output
-
-Converts CSV transactions ...
-
-	14 Dec 13,"Payee",MR B SMITH,Household,,4.99
-
-... to Ledger format
-
-	2013/1/14 Payee
-		Expenses:Home               £4.99
-		Liabilities:Credit Card
+    ledger-import --file /path/to/transactions.csv --account 'Assets:Current Account' --ledger /path/to/ledger.dat --currency '£' --contains-header --date-column 1 --date-format 'DD/MM/YYYY' --payee-column 2 --amount-column 3
