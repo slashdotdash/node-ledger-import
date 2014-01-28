@@ -5,6 +5,10 @@ var _ = require('lodash'),
     csv = require('csv'),
     Import = require('../lib/import').Import;
 
+var list = function(val) {
+  return _.map(val.split(','), function(i) { return parseInt(i, 10); });
+};
+
 program
   .version('0.0.1')
   .usage('[options]')
@@ -20,8 +24,7 @@ program
   .option('--date-format <string>', 'Force the date format')
   .option('--payee-column <number>', 'Column containing the payee (description) in the CSV file', parseInt)
   .option('--amount-column <number>', 'Column containing the amount in the CSV file', parseInt)
-  .option('--amount-from-column <number>', 'Column containing the amount to the specified account in the CSV file', parseInt)
-  .option('--amount-to-column <number>', 'Column containing the amount from specified account in the CSV file', parseInt)
+  .option('--amount-columns <numbers>', 'Multiple columns containing the amount in the CSV file', list)
   .parse(process.argv);
 
 var file = program.file,
@@ -47,6 +50,10 @@ if (program.amountColumn) {
   options.amount = {
     column: program.amountColumn
   };
+} else if (program.amountColumns) {
+  options.amount = {
+    columns: program.amountColumns
+  };
 }
 
 if (!file) {
@@ -61,7 +68,6 @@ new Import(options)
   })
   .on('skipped', function() {
     process.stdout.write('.');
-    // console.log('.');
   })
   .once('error', function(err) {
     console.error(err);
