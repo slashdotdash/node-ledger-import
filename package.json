@@ -1,7 +1,7 @@
 {
   "name": "ledger-import",
   "homepage": "https://github.com/slashdotdash/node-ledger-import",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Import accounting transactions from CSV files to Ledger format.",
   "repository": {
     "type": "git",
@@ -35,11 +35,12 @@
   "dependencies": {
     "classifier": "~0.1.0",
     "commander": "2.1.0",
-    "csv": "~0.3.6",
-    "ledger-cli": "0.0.10",
+    "csv": "~0.3.7",
+    "ledger-cli": "0.0.11",
     "lodash": "~2.4.1",
     "moment": "~2.5.1",
-    "prompt": "~0.2.12"
+    "prompt": "~0.2.12",
+    "temp": "~0.6.0"
   },
   "readmeFilename": "README.md"
 }
