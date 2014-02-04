@@ -1,4 +1,4 @@
-var classifyAccount = require('../../lib/filters/classify-account');
+var classifyAccount = require('../../../lib/filters/transaction/classify-account');
 
 describe('classify account', function() {
   var spec, output, transactions;

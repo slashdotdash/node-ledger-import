@@ -1,4 +1,4 @@
-var formatTransaction = require('../../lib/filters/format-transaction');
+var formatTransaction = require('../../../lib/filters/transaction/format-transaction');
 
 describe('format transaction', function() {
   var spec, filter, output;

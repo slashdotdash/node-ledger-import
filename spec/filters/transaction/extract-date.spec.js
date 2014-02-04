@@ -1,4 +1,4 @@
-var extractDate = require('../../lib/filters/extract-date');
+var extractDate = require('../../../lib/filters/transaction/extract-date');
 
 describe('extract date', function() {
   var spec, filter, output;

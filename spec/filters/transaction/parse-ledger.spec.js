@@ -1,4 +1,4 @@
-var parseLedger = require('../../lib/filters/parse-ledger');
+var parseLedger = require('../../../lib/filters/transaction/parse-ledger');
 
 describe('parse Ledger file', function() {
   var spec, output;

@@ -1,4 +1,4 @@
-var extractAmount = require('../../lib/filters/extract-amount');
+var extractAmount = require('../../../lib/filters/transaction/extract-amount');
 
 describe('extract amount', function() {
   var spec, output;

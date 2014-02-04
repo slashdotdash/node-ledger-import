@@ -1,4 +1,4 @@
-var extractPayee = require('../../lib/filters/extract-payee');
+var extractPayee = require('../../../lib/filters/transaction/extract-payee');
 
 describe('extract payee', function() {
   var spec, filter, output;
