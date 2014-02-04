@@ -54,4 +54,14 @@ describe('extract amount', function() {
       });
     });
   });
+
+  describe('amounts with thousand separator', function() {
+    beforeEach(function(done) {
+      this.createFilter({ column: 1 }, [ '-1,097.43' ], done);
+    });
+
+    it('should parse', function() {
+      expect(output.amount).toEqual(-1097.43);
+    });
+  });
 });
