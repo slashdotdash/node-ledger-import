@@ -14,7 +14,7 @@ program
   .usage('[options]')
   .option('-f, --file <file>', 'The CSV file to parse')
   .option('-a, --account <name>', 'The Ledger Account this file is for')
-  .option('-i, --inverse', 'Use the negative of each amount')
+  .option('-i, --inverse', 'Use the negative of each amount', false)
   .option('-v, --verbose', 'Run verbosely', false)
   .option('-l, --ledger <file>', 'An existing ledger file to learn accounts from')
   .option('-c, --currency <symbol>', 'Currency symbol to use, defaults to £ ($, EUR)', '£')
@@ -48,11 +48,13 @@ var options = {
 
 if (program.amountColumn) {
   options.amount = {
-    column: program.amountColumn
+    column: program.amountColumn,
+    inverse: program.inverse
   };
 } else if (program.amountColumns) {
   options.amount = {
-    columns: program.amountColumns
+    columns: program.amountColumns,
+    inverse: program.inverse
   };
 }
 
