@@ -65,6 +65,9 @@ if (!file) {
 var csv = csv().from.path(file, { delimiter: delimiter, escape: escape });
 
 new Import(options)
+  .on('skipped', function() {
+    process.stdout.write('.');
+  })
   .once('error', function(err) {
     console.error(err);
     process.exit(1);

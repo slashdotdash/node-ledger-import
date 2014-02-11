@@ -39,7 +39,7 @@
     "ledger-cli": "0.0.11",
     "lodash": "~2.4.1",
     "moment": "~2.5.1",
-    "pipes-and-filters": "~0.0.2",
+    "pipes-and-filters": "~0.0.4",
     "prompt": "~0.2.12",
     "temp": "~0.6.0"
   },
