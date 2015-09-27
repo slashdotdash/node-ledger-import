@@ -10,7 +10,7 @@ var list = function(val) {
 };
 
 program
-  .version('0.0.1')
+  .version('0.0.6')
   .usage('[options]')
   .option('-f, --file <file>', 'The CSV file to parse')
   .option('-a, --account <name>', 'The Ledger Account this file is for')
@@ -25,6 +25,7 @@ program
   .option('--payee-column <number>', 'Column containing the payee (description) in the CSV file', parseInt)
   .option('--amount-column <number>', 'Column containing the amount in the CSV file', parseInt)
   .option('--amount-columns <numbers>', 'Multiple columns containing the amount in the CSV file', list)
+  .option('--ledger-binary <path>', 'Path to the Ledger executable (e.g. /user/local/bin/ledger)')
   .parse(process.argv);
 
 var file = program.file,
@@ -33,6 +34,7 @@ var file = program.file,
 
 var options = {
   ledger: program.ledger,
+  binary: program.ledgerBinary,
   log: program.verbose,
   header: program.containsHeader,
   currency: program.currency,
